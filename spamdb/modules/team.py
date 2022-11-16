@@ -2,7 +2,7 @@ import pymongo
 import random
 import argparse
 from modules.event import events
-from modules.datasrc import env
+from modules.env import env
 import modules.forum as forum
 import modules.util as util
 

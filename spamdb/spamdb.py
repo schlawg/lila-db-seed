@@ -8,7 +8,9 @@ import modules.blog as blog
 import modules.game as game
 import modules.team as team
 import modules.tour as tour
-from modules.datasrc import env
+import modules.insight as insight
+
+from modules.env import env
 
 
 def main():
@@ -23,6 +25,7 @@ def main():
         team.update_team_colls()
         blog.update_blog_colls()
         event.update_event_colls()
+        insight.update_insight_coll()
 
 
 class _MongoContextMgr:
@@ -133,10 +136,19 @@ def _get_args() -> argparse.Namespace:
         default=0.16,
         help="""
             follow factor is the fraction of all users that each user
-            follows.  for work on timelines, notifications, friend features,
+            follows. for work on timelines, notifications, friend features,
             you can set this to 1 for a fully connected graph of normal users.
             (default: .16)
         """,
+    )
+    parser.add_argument(
+        "--insights",
+        action="store_true",
+        help="""
+            use this flag to add insights data.  note that you must override
+            insight.mongodb.uri=${mongodb.uri} in your application.conf to see
+            the insights. (base.conf defaults to a different database).
+            """
     )
     parser.add_argument(
         "--no-timeline",
@@ -186,6 +198,7 @@ def _get_args() -> argparse.Namespace:
             "user",
             "blog",
             "tour",
+            "insight",
         ],
     )
     return parser.parse_args()

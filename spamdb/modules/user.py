@@ -5,7 +5,7 @@ import random
 import argparse
 from sys import stdout
 from datetime import datetime
-from modules.datasrc import env
+from modules.env import env
 from modules.event import events
 import modules.perf as perf
 import modules.util as util
@@ -157,6 +157,8 @@ class Pref:
         self.bgImg = env.random_image_link()
         self.agreement = 2
         self.submitMove = 0
+        self.corresEmailNotif = 1
+        self.mention = 0
 
 
 class History:

@@ -4,7 +4,7 @@ import pymongo
 import argparse
 from datetime import datetime
 import modules.util as util
-from modules.datasrc import env
+from modules.env import env
 
 
 def update_event_colls() -> None:
